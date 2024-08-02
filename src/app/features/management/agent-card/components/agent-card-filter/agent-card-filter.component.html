@@ -1,0 +1,148 @@
+<div class="filter">
+  <div class="filter-title">Фильтр</div>
+  <form class="filter-inputs" [formGroup]="formGroup">
+    <div
+      class="form-input"
+      [class.error]="login?.invalid && (login?.dirty || login?.touched)"
+    >
+      <div class="form-label">Логин</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <input matInput placeholder="Логин" formControlName="login" />
+        <mat-icon
+          *ngIf="login?.value"
+          matSuffix
+          (click)="$event.stopPropagation(); login?.reset()"
+          >cancel</mat-icon
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-input">
+      <div class="form-label">Телефон</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <input matInput placeholder="Телефон" formControlName="phone" />
+        <mat-icon
+          *ngIf="phone?.value"
+          matSuffix
+          (click)="$event.stopPropagation(); phone?.reset()"
+          >cancel</mat-icon
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-input">
+      <div class="form-label">Дата создания</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <input
+          matInput
+          [matDatepicker]="createDate"
+          placeholder="Дата создания"
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="createDate">
+          <mat-icon matDatepickerToggleIcon>apps</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #createDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div
+      class="form-input"
+      [class.error]="email?.invalid && (email?.dirty || email?.touched)"
+    >
+      <div class="form-label">E-mail</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <input
+          matInput
+          placeholder="E-mail"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+        />
+        @if (formGroup.get('email')?.hasError('email')) {
+        <mat-error>Недопустимые символы</mat-error>
+        }
+        <mat-icon
+          *ngIf="email?.value"
+          matSuffix
+          (click)="$event.stopPropagation(); email?.reset()"
+          >cancel</mat-icon
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-input">
+      <div class="form-label">Роль</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <mat-select placeholder="Роль" formControlName="role">
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+        <mat-icon
+          *ngIf="role?.value"
+          matSuffix
+          (click)="$event.stopPropagation(); role?.reset()"
+          >cancel</mat-icon
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-input">
+      <div class="form-label">Дата изменения</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <input
+          matInput
+          [matDatepicker]="modifyDate"
+          placeholder="Дата изменения"
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="modifyDate">
+          <mat-icon matDatepickerToggleIcon>apps</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #modifyDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-input">
+      <div class="form-label">Статус</div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <mat-select placeholder="Статус" formControlName="status">
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+        <mat-icon
+          *ngIf="status?.value"
+          matSuffix
+          (click)="$event.stopPropagation(); status?.reset()"
+          >cancel</mat-icon
+        >
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="filter-actions">
+    <button mat-flat-button (click)="filterData()">Применить</button>
+    <button mat-flat-button>Отмена</button>
+    <button mat-flat-button>Сбросить</button>
+  </div>
+</div>

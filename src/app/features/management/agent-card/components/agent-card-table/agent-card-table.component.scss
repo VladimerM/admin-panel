@@ -1,0 +1,17 @@
+.management-table {
+  .header-row {
+    background-color: #da2032;
+    color: #fff;
+  }
+  .login {
+    div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .login-checkbox {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

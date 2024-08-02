@@ -1,0 +1,99 @@
+/* Your global styles.scss or a component-specific SCSS file */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000;
+}
+
+.app-sidenav {
+  flex: 0 0 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.content {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.content {
+  flex: 1;
+}
+
+.content.content-with-sidebar {
+  margin-left: 0;
+}
+
+.with-sidebar {
+  left: 273px;
+  transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+}
+
+.without-sidebar {
+  left: 25px;
+  padding: 3px;
+  transition: left 0.3s ease, padding-left 0.3s ease; /* Add transitions for left and padding changes */
+}
+
+.management {
+  padding: 12px 24px;
+  button {
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #da2032;
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #666f78;
+    }
+  }
+  .go-back {
+    color: #666f78;
+    margin-bottom: 32px;
+  }
+
+  .management-title {
+    color: #282828;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .management-actions {
+    display: flex;
+    justify-content: space-between;
+    .management-user-actions {
+      display: flex;
+      gap: 24px;
+    }
+  }
+}
+// ::ng-deep .mat-mdc-text-field-wrapper {
+//   height: 44px !important;
+// }
+// ::ng-deep .mat-mdc-form-field-flex {
+//   margin-top: -7px !important;
+// }

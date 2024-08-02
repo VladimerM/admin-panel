@@ -1,0 +1,39 @@
+<div
+  class="sidebar"
+  [ngClass]="{ showSidebar: isSidebarVisible, hideSidebar: !isSidebarVisible }"
+>
+  <ul>
+    <li
+      class="sidenav-title"
+      routerLinkActive="active"
+      (click)="toggleSubmenu()"
+    >
+      <div class="sidenav-title">
+        <div class="item-icon"></div>
+        <span class="menu-text"
+          ><span>Суперагент</span> <br />
+          Банк ВТБ(ПАО)</span
+        >
+        <div class="meno-open-icon">
+          <mat-icon>arrow_drop_down</mat-icon>
+        </div>
+      </div>
+    </li>
+    <li class="management">
+      <div class="sidenav-title">
+        <div class="item-icon"><mat-icon>work</mat-icon></div>
+        <span class="menu-text">Управление</span>
+      </div>
+      <div class="sub-menu">
+        <span class="active">Карточка контрагента</span>
+        <span>Карточка контрагента</span>
+      </div>
+    </li>
+    <li>
+      <div class="sidenav-title">
+        <div class="item-icon"><mat-icon>group</mat-icon></div>
+        <span class="menu-text">Субагенты</span>
+      </div>
+    </li>
+  </ul>
+</div>
