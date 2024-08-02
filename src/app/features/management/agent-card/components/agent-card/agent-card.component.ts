@@ -34,5 +34,7 @@ export class AgentCardComponent implements OnInit {
       .subscribe();
   }
 
-  filterData() {}
+  filterData(filter: any) {
+    console.log(filter);
+  }
 }

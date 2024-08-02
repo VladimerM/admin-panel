@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { PhoneNumberDirective } from '../../directives/phone-number.directive';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -39,6 +40,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatDatepickerModule,
     MatSelectModule,
     MatButtonModule,
+    PhoneNumberDirective,
   ],
   templateUrl: './agent-card-filter.component.html',
   styleUrl: './agent-card-filter.component.scss',
@@ -49,8 +51,10 @@ export class AgentCardFilterComponent implements OnInit {
   @Output() onFilter = new EventEmitter();
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      login: new FormControl(),
-      email: new FormControl('', [
+      login: new FormControl(null, [
+        Validators.pattern('^[a-zA-Z][a-zA-Z0-9_]{2,15}$'),
+      ]),
+      email: new FormControl(null, [
         Validators.required,
         Validators.email,
         Validators.pattern(
@@ -66,7 +70,7 @@ export class AgentCardFilterComponent implements OnInit {
   }
 
   filterData() {
-    this.onFilter.emit(this.formGroup.getRawValue);
+    this.onFilter.emit(this.formGroup.getRawValue());
   }
 
   get login() {

@@ -11,7 +11,15 @@
         appearance="outline"
         subscriptSizing="dynamic"
       >
-        <input matInput placeholder="Логин" formControlName="login" />
+        <input
+          matInput
+          placeholder="Логин"
+          formControlName="login"
+          [errorStateMatcher]="matcher"
+        />
+        @if (login?.hasError('pattern')) {
+        <mat-error>Incorrect login</mat-error>
+        }
         <mat-icon
           *ngIf="login?.value"
           matSuffix
@@ -27,7 +35,12 @@
         appearance="outline"
         subscriptSizing="dynamic"
       >
-        <input matInput placeholder="Телефон" formControlName="phone" />
+        <input
+          matInput
+          placeholder="Телефон"
+          formControlName="phone"
+          appPhoneNumber
+        />
         <mat-icon
           *ngIf="phone?.value"
           matSuffix
@@ -89,9 +102,8 @@
         subscriptSizing="dynamic"
       >
         <mat-select placeholder="Роль" formControlName="role">
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+          <mat-option value="1">Пользователь</mat-option>
+          <mat-option value="2">Администратор</mat-option>
         </mat-select>
         <mat-icon
           *ngIf="role?.value"
@@ -127,9 +139,8 @@
         subscriptSizing="dynamic"
       >
         <mat-select placeholder="Статус" formControlName="status">
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+          <mat-option value="option1">ACTIVE</mat-option>
+          <mat-option value="option3">BLOCKED</mat-option>
         </mat-select>
         <mat-icon
           *ngIf="status?.value"
