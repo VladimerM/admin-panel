@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import {
+  ApiModifiedResponse,
+  MergedUser,
+  User,
+  UserData,
+} from '../interfaces/agent-card.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,19 +17,6 @@ export class ManagementService {
 
   constructor(private http: HttpClient) {}
 
-  mergeUserData(users: User[], userData: UserData[]): MergedUser[] {
-    const mergedData: MergedUser[] = [];
-
-    users.forEach((user) => {
-      userData.forEach((data) => {
-        if (user.id === data.user_id) {
-          mergedData.push({ ...user, ...data });
-        }
-      });
-    });
-
-    return mergedData;
-  }
   getData(): Observable<ApiModifiedResponse> {
     return this.http.get<ApiModifiedResponse>(this.apiUrl).pipe(
       map((value) => {
@@ -33,38 +26,20 @@ export class ManagementService {
       })
     );
   }
-}
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  phone: number;
-  create_at: number;
-  update_at: number;
-}
+  mergeUserData(users: User[], userData: UserData[]): MergedUser[] {
+    const mergedData: MergedUser[] = [];
+    let index = 0;
+    users.forEach((user) => {
+      userData.forEach((data) => {
+        index++;
+        if (user.id === data.user_id) {
+          data.dataId = index;
+          mergedData.push({ ...user, ...data });
+        }
+      });
+    });
 
-export interface UserData {
-  user_id: number;
-  is_admin: boolean;
-  is_ecp: boolean;
-  status: string;
+    return mergedData;
+  }
 }
-
-export interface Page {
-  total: number;
-  current: number;
-  size: number;
-}
-
-export interface ApiResponse {
-  page: Page;
-  users: User[];
-  data: UserData[];
-}
-
-export interface ApiModifiedResponse extends ApiResponse {
-  modifiedData?: MergedUser[];
-}
-
-export interface MergedUser extends User, UserData {}

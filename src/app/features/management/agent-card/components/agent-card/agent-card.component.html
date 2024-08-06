@@ -1,2 +1,8 @@
-<app-agent-card-filter (onFilter)="filterData($event)"></app-agent-card-filter>
-<app-agent-card-table [data]="dataSource"></app-agent-card-table>
+<app-agent-card-filter
+  (onFilter)="filterData($event)"
+  (onAction)="onAction.next($event)"
+></app-agent-card-filter>
+<app-agent-card-table
+  [data]="filteredDataSource"
+  [onAction]="onAction"
+></app-agent-card-table>

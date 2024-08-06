@@ -1,5 +1,25 @@
 .filter {
   padding: 32px;
+  .management-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    .management-user-actions {
+      display: flex;
+      gap: 24px;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
   button {
     font-size: 14px;
     font-weight: 300;
